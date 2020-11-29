@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+    
+
+{% block content %}
+
+{% if todos is False %}
+    <div class="alert alert-warning alert-dismissible fade show">
+        <p>No Todos Yet!</p>
+    </div>
+{% else %}
+
+{% if messages %}
+    
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show">
+        {{message}}
+    </div> 
+    {% endfor %}
+        
+{% endif %}
+       
+
+{% for todo in todos %}
+<div class="card text-center m-1">
+    <div class="card-header">
+      By-{{todo.user.username}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{todo.title|capfirst}}</h5>
+      <p class="card-text"></p>
+      {% if todo.status is False %}
+      <a href="{% url 'todos:done' todo.id %}" class="btn btn-outline-danger ">Not Done!</a>
+      {% else %}
+      <a href="#" class="btn btn-success disabled">Done!</a>
+      {% endif %} 
+    </div>
+    <div class="card-footer text-muted">
+      {{todo.createdOn}}
+    </div>
+  </div>
+{% endfor %}
+
+{% endif %}
+{% endblock content %}

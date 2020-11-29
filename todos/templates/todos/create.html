@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+    
+
+{% block content %}
+<form action="{% url 'todos:create-todo' %}" method="post">
+    {% csrf_token %}
+    {{forms.as_table}}
+    <input type="submit" value="Create Todo" class="btn btn-outline-primary">
+</form>
+{% endblock content %}
+    

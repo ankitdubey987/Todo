@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+    
+
+{% block content %}
+<div class="text-center col-lg-12">
+    {% if messages %}
+        
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}
+        {% if message.tags == 'error' %}
+                alert-danger
+        {% else %}
+        alert-{{message.tags}}
+        {% endif %}
+        {% endif %}
+        alert-dismissible fade show">
+            {{message}}
+        </div>
+        {% endfor %}
+            
+    {% endif %}
+</div>
+<div class="d-flex justify-content-center">
+    <div class="row">
+        <form class="form-group" action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{forms.username.label}}
+                {{forms.username}}
+            </div>
+            <div class="form-group">
+                {{forms.password.label}}
+                {{forms.password}}
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="LogIn" class="btn btn-outline-primary">
+            </div>
+            <div class="form-group text-center">
+                Don't have an account? <a href="{% url 'users:signup' %}" class="btn btn-link">SignUp</a>
+            </div>
+        </form>
+    </div>  
+</div>
+{% endblock content %}
+    
