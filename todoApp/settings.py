@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'i_f+2dar+=scs-pmsaxw)vu(ui!&qdxsckgv6ahj2iri2qu9iy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 DEBUG = False
 
 ALLOWED_HOSTS = ['atodo.herokuapp.com']
+# ALLOWED_HOSTS = []
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -125,11 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media/'
 STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'app/static',
 ]
 LOGIN_REDIRECT_URL = 'todos:home'
 LOGIN_URL = 'users:login'
