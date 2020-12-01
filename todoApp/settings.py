@@ -130,9 +130,9 @@ MEDIA_URL = 'media'
 MEDIA_ROOT = 'media'
 STATIC_ROOT = 'static'
 STATIC_URL = 'static'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
 LOGIN_REDIRECT_URL = 'todos:home'
 LOGIN_URL = 'users:login'
 LOGOUT_REDIRECT_URL = 'users:login'
