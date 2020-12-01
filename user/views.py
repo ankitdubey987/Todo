@@ -87,6 +87,5 @@ class ProfileEditView(LoginRequiredMixin,UpdateView):
             'city',
             'pincode',
         ]
-    template_name = 'user/profile_create.html'
-    context_object_name = 'form'
+    template_name = 'user/profile_update.html'
     success_url = reverse_lazy('users:profile')
