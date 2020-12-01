@@ -129,6 +129,7 @@ STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
+    BASE_DIR / 'app/static',
 ]
 LOGIN_REDIRECT_URL = 'todos:home'
 LOGIN_URL = 'users:login'
