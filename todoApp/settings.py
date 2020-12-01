@@ -27,7 +27,7 @@ SECRET_KEY = 'i_f+2dar+=scs-pmsaxw)vu(ui!&qdxsckgv6ahj2iri2qu9iy'
 DEBUG = False
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['https://atodo.herokuapp.com/']
+ALLOWED_HOSTS = ['atodo.herokuapp.com']
 
 INTERNAL_IPS = [
     '127.0.0.1',
