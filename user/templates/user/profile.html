@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+    
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show">
+                {{message}}
+            </div>
+        {% endfor %}
+            
+    {% endif %}
+        
+</div>
+    <div class="container">
+        <div class="d-flex justify-content-center row text-center">
+            <div class="col-lg-12">
+                <img src="{{profile.getProfileURL}}" alt="{{profile.first_name}}" class="rounded-circle" height="150px" width="150px">
+            </div>
+            {{profile.first_name}}
+            {{profile.last_name}}
+            {{profile.address}}
+            {{profile.city}}
+            {{profile.pincode}}
+        </div>
+        <a href="{% url 'users:edit' profile.user.id %}">edit profile</a>
+    </div>
+{% endblock content %}
+    

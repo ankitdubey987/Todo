@@ -37,6 +37,8 @@
       {% else %}
       <a href="#" class="btn btn-success disabled">Done!</a>
       {% endif %} 
+      <a href="{% url 'todos:edit' todo.id %}" class="btn btn-link">edit</a>
+      <a href="{% url 'todos:remove' todo.id %}" class="btn btn-link">delete</a>
     </div>
     <div class="card-footer text-muted">
       {{todo.createdOn}}

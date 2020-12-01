@@ -7,6 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.utils.timezone import datetime
 from django.contrib import messages
+from user.models import Profile
+from django.views.generic import UpdateView,DeleteView
 # Create your views here.
 class TodoListView(LoginRequiredMixin,TemplateView):
     template_name = 'todos/index.html'
@@ -41,10 +43,29 @@ def markDone(request,pk=None):
     if request.method == 'GET':
         todo = get_object_or_404(Todo,id=pk)
         if todo:
-            todo.status = True
-            todo.save()
-            messages.success(request,f'{todo.title} is done successfully.')
+            title = todo.title
+            todo.delete()
+            messages.success(request,f'{title} is done successfully.')
             return redirect('todos:home')
         messages.warning(request,'something went wrong!')
         return redirect('todos:home')
-        
+
+class TodoUpdateView(UpdateView):
+    """
+    for updating the todos made by user
+    """
+    model = Todo
+    fields = [
+        'title',
+        'status',
+    ]
+    template_name='todos/create.html'
+    context_object_name = 'forms'
+    success_url = reverse_lazy('todos:home')
+
+class TodoRemoveView(LoginRequiredMixin,DeleteView):
+    model = Todo
+    success_url = reverse_lazy('todos:home')
+    template_name = 'todos/todo_confirm_delete.html'
+    context_object_name = 'todo'
+    

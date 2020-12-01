@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+    
+
+{% block content %}
+<div class="d-flex justify-content-center col-lg-12">
+    
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert 
+            {% if message.tags == 'error' %}
+                alert-danger
+            {% else%}
+                 alert-{{message.tags}}
+            {% endif %}
+             alert-dismissible fade show">
+                {{message}}
+            </div>
+        {% endfor %}
+            
+    {% endif %}
+        
+</div>
+    <div class="container">
+        <div class="d-flex justify-content-center row text-center">
+         <form class="form-group" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
+             {% csrf_token %}
+             {{form.as_table}}
+             <input type="submit" value="Update" class="btn btn-outline-primary">
+         </form>
+        </div>
+    </div>
+{% endblock content %}
+    

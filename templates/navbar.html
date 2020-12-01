@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {% if request.user.is_authenticated %}
-            <a class="navbar-brand" href="#">{{request.user.username}} Todos</a>
+            <a class="navbar-brand" href="{% url 'todos:home' %}">{{request.user.username|capfirst}} Todos</a>
         {% else %}
-            <a href="#" class="navbar-brand">@Todos</a>
+            <a href="{% url 'todos:home' %}" class="navbar-brand">@Todos</a>
         {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -12,32 +12,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'todos:home' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{% url 'todos:create-todo' %}">New Todo</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Contact Us</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            
             {% if request.user.is_authenticated %}
-            <p>{{request.user.username}}</p>
-            <a class="btn btn-outline-danger my-2 my-sm-0 m-1" href="{% url 'users:logout' %}">Logout</a>
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle btn-primary rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{request.user.profile.getProfileURL}}" alt="{{profile.first_name}}" class="rounded-circle" height="30px" width="30px">
+              </a>
+              <div class="dropdown-menu pull-right" aria-labelledby="navbarDropdown">
+                <a href="{% url 'todos:home' %}" class="dropdown-item">{{user.username|capfirst}}</a>
+                <a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item"  href="{% url 'users:logout' %}">Logout</a>
+              </div>
+            </div>
             {% else %}
             <a class="btn btn-outline-success my-2 my-sm-0 m-1 " href="{% url 'users:login' %}">Login</a>
             <a class="btn btn-outline-primary my-2 my-sm-0 m-1 " href="{% url 'users:signup' %}">SignUp</a>
