@@ -59,8 +59,7 @@ class TodoUpdateView(UpdateView):
         'title',
         'status',
     ]
-    template_name='todos/create.html'
-    context_object_name = 'forms'
+    template_name='todos/profile_update.html'
     success_url = reverse_lazy('todos:home')
 
 class TodoRemoveView(LoginRequiredMixin,DeleteView):
