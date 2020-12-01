@@ -26,8 +26,8 @@ SECRET_KEY = 'i_f+2dar+=scs-pmsaxw)vu(ui!&qdxsckgv6ahj2iri2qu9iy'
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['atodo.herokuapp.com']
 # ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://atodo.herokuapp.com/']
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -126,13 +126,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-MEDIA_URL = 'media'
-MEDIA_ROOT = 'media'
-STATIC_ROOT = 'static'
-STATIC_URL = 'static'
+# MEDIA_URL = '/media/'
+# STATIC_ROOT = '/static/'
+# STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #     BASE_DIR / 'static',
 # ]
+
 LOGIN_REDIRECT_URL = 'todos:home'
 LOGIN_URL = 'users:login'
 LOGOUT_REDIRECT_URL = 'users:login'
+
+import os
+
+# for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
